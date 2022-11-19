@@ -19,6 +19,7 @@ package org.optapconf.plannerbenchmark;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import org.optaconf.bridge.devoxx.DevoxxImporter;
 import org.optaconf.domain.Conference;
@@ -45,7 +46,7 @@ public class OptaConfPlannerApp {
         logger.info("Solved.");
 
         ConferenceFileIO fileIO = new ConferenceFileIO();
-        File outputFile = File.createTempFile("devoxx2016-", "." + fileIO.getOutputFileExtension());
+        File outputFile = Files.createTempFile("devoxx2016-", "." + fileIO.getOutputFileExtension()).toFile();
         fileIO.write(conference, outputFile);
         logger.info("Written.");
         Desktop.getDesktop().open(outputFile);
